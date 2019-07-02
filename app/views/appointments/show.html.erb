@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Created:</strong>
+  <%= @appointment.user.try(:email) %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @appointment.client.try(:first_name) %>
+</p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @appointment.person.try(:name) %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @appointment.from_date %>
+</p>
+
+<p>
+  <strong>To:</strong>
+  <%= @appointment.to_date %>
+</p>
+
+<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<%= link_to 'Back', appointments_path %>

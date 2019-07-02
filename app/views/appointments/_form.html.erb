@@ -1,0 +1,37 @@
+<%= form_with(model: appointment, local: true) do |form| %>
+  <% if appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :client_id %>
+    <%= form.select :client_id, Client.pluck(:first_name,:last_name,:id).map{|x,y,v| ["#{x} #{y}",v]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.select :person_id, Person.pluck(:name,:id) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :from_date %>
+    <%= form.datetime_select :from_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_date %>
+    <%= form.datetime_select :to_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
